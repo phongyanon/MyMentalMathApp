@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>multiEleven</title>
+</head>
+
+<body>
+    <h1>multiEleven</h1>
+    <FORM  ACTION="" method="POST">
+        <h3 id="val1"></h3>
+        Fill answer: <input TYPE="text" name="Answer" id="uniAns"> 
+        
+    </FORM>
+    <div>
+        <input id='toggleButton' name='toggleButton' type='button'
+        value='START' onclick="toggle()">
+        <h3 id="checkAnswer"></h3>
+    </div>
+    <!--<div>
+        State: <input id='toggleButton' name='toggleButton' type='button'
+            value='ANS' onclick="toggle()">
+    </div> -->
+    <p id="check"></p>
+    <script type="text/javascript">
+        
+        var FirstVal;
+        function createVal() {
+            var val1 = Math.floor(Math.random() * 101);
+            FirstVal = val1
+            document.getElementById("val1").innerHTML = val1.toString() + "x 11";
+        }
+        
+        function checkAns(value) {
+            value = parseInt(value);
+            console.log("New type :" + typeof(value));
+            if ((FirstVal * 11) === value) {
+                document.getElementById("checkAnswer").innerHTML = "Correct!";
+                console.log("correct");
+            }
+            else{
+                document.getElementById("checkAnswer").innerHTML = "Wrong";
+                console.log("wrong");
+            }
+        }
+        
+        var state = false;
+        
+        function toggle() {
+            var node = document.getElementById('toggleButton');
+            state = !state
+            node.value = state ? 'ANS' : 'NEXT';
+            console.log( node.id, node.name, node.value );
+            if (node.value == 'NEXT') {
+                var ansValue = document.getElementById("uniAns").value;
+                checkAns(ansValue);
+            }else{
+                createVal();
+                document.getElementById("uniAns").value = "";
+            }
+        }
+
+
+    </script>
+</body>
+</html>
